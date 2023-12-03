@@ -1,13 +1,114 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport", content="width=device-width, initial-scale=1.0">
-        <title>Breakout</title>
-        <link rel="stylesheet" href="estilos.css">
-    </head>
-    
-    <body>
-        <canvas id="board"></canvas>
-        <script src="script.js"></script>
-    </body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rompeladrillos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-image: url("brickwall.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #overlay {
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            background-color: black;
+            border: 5px solid white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        #overlay h1 {
+            font-family: 'Arial', sans-serif;
+        }
+
+        #overlay p {
+            font-family: 'Arial', sans-serif;
+            color: lightblue;
+            margin-top: 4em;
+            line-height: 1.5em;
+        }
+
+        #start-button {
+            width: 100px;
+            height: 40px;
+            background-color: brown;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            align-self: center;
+        }
+
+        #credits {
+            font-size: 12px;
+            align-self: flex-end;
+            color: white;
+        }
+
+        #meme {
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 33%;
+            transform: translate(-50%, -50%);
+            width: 400px; /* Ancho ajustable según tus necesidades */
+            height: auto; /* Esto mantendrá la proporción de la imagen */
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay">
+        <div>
+            <h1>Rompeladrillos</h1>
+            <p>Juego de romper ladrillos. Muevete con las flechas del teclado.<br>¡Al finalizar el nivel, tendrás otro muro que romper!.</p>
+        </div>
+        <button id="start-button">JUGAR</button>
+        <div id="credits">ironhack/EduardoArranz</div>
+    </div>
+
+   
+    <img id="meme" src="meme.jpg" alt="Meme">
+
+    <canvas id="board"></canvas>
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const overlay = document.getElementById("overlay");
+            const startButton = document.getElementById("start-button");
+            const memeImage = document.getElementById("meme");
+
+            startButton.addEventListener("click", function () {
+                overlay.style.display = "none";
+
+                // Mostrar la imagen meme después de 30 segundos
+                setTimeout(function() {
+                    memeImage.style.display = "block";
+
+                    // Ocultar la imagen después de 5 segundos
+                    setTimeout(function() {
+                        memeImage.style.display = "none";
+                    }, 5000);
+                }, 30000);
+            });
+        });
+    </script>
+</body>
 </html>
+
